@@ -8,7 +8,7 @@ where
 
 -- Funktion value: gibt den Wert zu einem bestimmten Schlüssel zurück
 value :: Eq a => [(a, b)] -> a -> b
-value [] _         = error "Schlüssel existiert nicht."
+value [] _         = error "(Hash) Schlüssel existiert nicht."
 value (x:xs) key
     | key == fst x = snd x
     | otherwise    = value xs key
