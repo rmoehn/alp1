@@ -1,16 +1,14 @@
--- Funktion ++: fügt zwei Listen zusammen
-(+++) :: [a] -> [a] -> [a]
-(+++) a b = foldr (:) b a
+module Lists (
+    join,
+    trennen,
+    split,
+)
+where
 
 -- Funktion join: fügt eine Liste von Listen zu einer flachen Liste
 -- unter Benutzung eines Verbindungselements zusammen
 join :: [a] -> [[a]] -> [a]
 join joiner listlist = foldl1 (\x y -> x ++ joiner ++ y) listlist
-
--- Funktion concat': fügt eine Liste von Listen zu einer flachen Liste
--- zusammen
-concat' :: [[a]] -> [a]
-concat' listlist = join [] listlist
 
 -- Funktion split: trennt eine Liste an den Stellen, wo das angegebene Muster
 -- vorkommt, auf und gibt eine Liste der Teillisten zurück
