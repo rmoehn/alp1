@@ -17,6 +17,18 @@ pad_string :: Int -> Char -> String -> String
 pad_string breite zeichen string =
     replicate (breite - length string) zeichen ++ string
 
+-- Funktion center_string: zentriert einen String in einem Feld angegebener
+-- Breite. Sollte genaue Zentrierung nicht möglich sein, wird rechtsgerückt
+center_string :: Int -> Char -> String -> String
+center_string breite zeichen string = replicate anffeldln zeichen
+                                      ++ string
+                                      ++ replicate endfeldln zeichen
+    where
+    stringln  = length string
+    anffeldln = div (breite - stringln) 2
+    endfeldln = breite - anffeldln - stringln
+
+
 -- Funktion teiler: gibt eine Liste der echten Teiler einer Zahl zurück
 teiler :: Integer -> [Integer]
 teiler n = [x | x <- [1..(max_teiler n)], mod n x == 0]
