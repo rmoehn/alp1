@@ -1,6 +1,7 @@
 module Num_Utils (
     pad_int,
     pad_string,
+    center_string,
     teiler,
     avg,
 ) where
@@ -16,6 +17,11 @@ pad_int breite zeichen zahl = pad_string breite zeichen (show zahl)
 pad_string :: Int -> Char -> String -> String
 pad_string breite zeichen string =
     replicate (breite - length string) zeichen ++ string
+
+-- Funktion center_int: gibt einen Int-Wert als String zentriert in einem Feld
+-- angegebener Breite aus
+center_int :: Int -> Char -> Int -> String
+center_int breite zeichen zahl = center_string breite zeichen (show zahl)
 
 -- Funktion center_string: zentriert einen String in einem Feld angegebener
 -- Breite. Sollte genaue Zentrierung nicht möglich sein, wird rechtsgerückt
