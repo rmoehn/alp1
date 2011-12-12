@@ -41,31 +41,6 @@ testbaum'2 = (Knoten 12
                  )
              )
 
-testbaum'3 :: Baum' Int
-testbaum'3 = (Knoten 12
-                 (Knoten 777
-                     (Blatt 12)
-                     (Knoten 22
-                         (Blatt 16)
-                         (Leer)
-                     )
-                 )
-                 (Knoten 16
-                     (Knoten 426
-                         (Blatt 13)
-                         (Blatt 6)
-                     )
-                     (Knoten (-12)
-                         (Leer)
-                         (Knoten 1
-                             (Blatt 4)
-                             (Blatt 90)
-                         )
-                     )
-                 )
-             )
-
-
 -- Funktion codify: kodiert einen Baum vom Typ Baum' a
 codify :: Show a => Baum' a -> String
 codify (Knoten x zw1 zw2)
