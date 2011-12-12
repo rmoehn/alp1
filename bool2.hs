@@ -1,7 +1,7 @@
 {-# OPTIONS_GHC -XFlexibleInstances #-}
 {-# OPTIONS_GHC -XTypeSynonymInstances #-}
 
-import Num_Bin
+import NumBin
 
 -- Typklasse für Boole'sche Funktionen verlangt...
 class BoolFunk a where

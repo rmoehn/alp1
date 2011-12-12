@@ -2,7 +2,7 @@
 {-# OPTIONS_GHC -XTypeSynonymInstances #-}
 
 -- Modul zur Bereitstellung binärer Zahlen
-module Num_Bin (
+module NumBin (
     Bin,
     pad_bin,
     test,
