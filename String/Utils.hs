@@ -1,4 +1,4 @@
-module String_Utils (
+module String.Utils (
     rem_trail_ws,
 )
 where
