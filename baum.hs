@@ -61,8 +61,7 @@ updownelse 'D' = 1
 updownelse _   = 0
 
 -- Funktion next_coded_branch: gibt den Teil eines Strings im codify-Format,
--- beginnend nach dem initialen 'D', zurück, der einen Zweig repräsentiert
---
+-- beginnend nach dem initialen 'D', zurück, der einen Zweig repräsentiert.
 -- Funktionsweise: String durchgehen, bei D 1 hochzählen, bei U 1
 -- subtrahieren, zurückkehren, wenn wieder bei 0
 --   5D-2UD7UU
