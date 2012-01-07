@@ -7,9 +7,8 @@ module SpeicherAlg(WBUCH,
 
 data WBUCH a b =
    Einf (WBUCH a b) a b |
-   Entf (WBUCH a b) a |
    Leer
---     deriving Show
+   deriving Show
 -- Woerterbuch wird als algebraischer Datentyp
 -- direkt nach der Spezifikation
 -- dargestellt.
@@ -19,17 +18,16 @@ finde (Einf w s t) x
   | s==x   = Just t
   | otherwise = finde w x
 
-finde (Entf w s) x
-  | s==x   = Nothing
-  | otherwise = finde w x
-
 finde Leer x = Nothing
 
 einf:: Eq a => WBUCH a b -> a -> b -> WBUCH a b
 einf = Einf
 
 entf:: Eq a => WBUCH a b -> a -> WBUCH a b
-entf = Entf
+entf Leer _ = Leer
+entf (Einf wbuch s w) x
+    | x == s    = entf wbuch x
+    | otherwise = Einf (entf wbuch x) s w
 
 leer:: WBUCH a b
 leer = Leer
