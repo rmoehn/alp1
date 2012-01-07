@@ -7,7 +7,7 @@ data WBUCH a b = WBuch [(a,b)]
 
 finde::  Eq a => WBUCH a b -> a -> Maybe b
 finde (WBuch []) x = Nothing
-finde (WBuch ((s,t):w)) x = 
+finde (WBuch ((s,t):w)) x =
   if s==x then Just t else finde (WBuch w) x
 
 einf:: Eq a => WBUCH a b -> a -> b -> WBUCH a b
@@ -20,6 +20,12 @@ entf (WBuch w) s = WBuch w'
 
 leer:: WBUCH a b
 leer = WBuch []
+
+-- Funktion anzahl: ermittelt die Anzahl der im Wörterbuch enthaltenen
+-- Schlüssel
+anzahl :: WBUCH a b -> Int
+anzahl (WBuch liste) = length liste
+
 
 -- Folgende Bedingungen sollen gelten:
 {-
