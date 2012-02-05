@@ -6,6 +6,8 @@ module Num.Utils (
     avg,
 ) where
 
+import Data.List
+
 -- Funktion pad_int: gibt eine Int-Wert als String aus, wobei links mit
 -- dem angegebenen Zeichen aufgefüllt wird, bis die gewünschte Breite erreicht
 -- ist
@@ -45,5 +47,5 @@ teiler n = [x | x <- [1..(max_teiler n)], mod n x == 0]
     max_teiler n = floor ((fromIntegral n) / 2)
 
 -- Funktion avg: gibt den Durchschnitt einer Liste von Zahlen zurück
-avg :: [Integer] -> Float
-avg nums = fromIntegral (sum nums) / fromIntegral (length nums)
+avg :: (Real a, Fractional b)  => [a] -> b
+avg nums = realToFrac (sum nums) / (fromIntegral (genericLength nums))
