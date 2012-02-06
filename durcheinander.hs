@@ -1,31 +1,31 @@
--- Funktion alleZerl: konstruiert alle Zerlegungen einer Liste in zwei
+import Num.Bin
+
+-- Funktion list_from_mask: Nimmt von zwei Listen immer den ersten Wert weg
+-- und fügt den aus der ersten der Ergebnisliste hinzu, wenn der Wert aus der
+-- zweiten Liste gleich dem dritten Argument ist
+list_from_mask :: [a] -> Bin -> Int -> [a]
+list_from_mask [] [] _ = []
+list_from_mask (l:ls) (b:bs) cmp
+    | b == cmp  = l : list_from_mask ls bs cmp
+    | otherwise = list_from_mask ls bs cmp
+
+-- Funktion listpair_from_bin: Generiert aus einer Liste und einem Bitvektor
+-- ein Tupel von Teillisten der Eingabeliste. -- Die Elemente, für die 0 im
+-- Bitvektor steht, kommen in die linke Teilliste, die Elemente mit 1 in die
+-- rechte.
+listpair_from_bin :: [a] -> Bin -> ([a], [a])
+listpair_from_bin inp_list mask
+    = (list_from_mask inp_list mask 0, list_from_mask inp_list mask 1)
+
+-- Funktion zerlegungen: generiert alle Zerlegungen einer Liste in  zwei
 -- Teillisten
-alleZerl :: Ord a => [a] -> [([a], [a])]
-alleZerl [] = []
-alleZerl list = alleZerl' 0 list
+zerlegungen :: [a] -> [([a], [a])]
+zerlegungen inplist = map (listpair_from_bin inplist) bitmasks
     where
-    -- Wie alleZerl, nur mit einem notwendigen Parameter
-    alleZerl' :: Ord a => Int -> [a] -> [([a], [a])]
-    alleZerl' _ []  = []
-    alleZerl' _ [x] = [([], [x]), ([x], [])]
-    alleZerl' index list
-        | index < (length list)
-            = map (lpartlins indexelem) (alleZerl' 0 restliste)
-              ++ alleZerl' (index + 1) list
-        | otherwise = []
-        where
-        indexelem = list !! index
-        restliste = take index list ++ drop (index + 1) list
-
-        -- Funktion lpartlins: fügt ein Element in den Anfang der linken
-        -- Teilliste eines Tupels ein, falls es kleiner oder gleich des ersten
-        -- Elementes der Liste ist oder falls die Liste leer ist.
-        lpartlins :: Ord a => a -> ([a], [a]) -> ([a], [a])
-        lpartlins y ([], rpartl) = ([y], rpartl)
-        lpartlins y ((x:xs), rpartl)
-            | y <= x    = (y:x:xs, rpartl)
-            | otherwise = ([], [])
-
+    bitmasks = map (pad_bin inplistlength) [zeroes .. oneses]
+    zeroes   = replicate inplistlength 0
+    oneses   = replicate inplistlength 1
+    inplistlength = length inplist
 
 -- Funktion permutationen: gibt alle n! Permutationen der Zahlen von 1 bis n
 -- aus
